@@ -18,33 +18,37 @@ final class State {
     }
     var h: Int {
         guard let crown = figures["crown"] else { fatalError("Короны нет") }
-        
-        if 5 - crown.y == 0 {
-            return 0
-        }
-        
-        var sum = 0
-        
-        for (_, figure) in figures {
-            if figure.name == "crown" {
-                continue
-            }
-            
-            if figure.width > 1 {
-                sum += figure.x + figure.y * 2
-                continue
-            }
-            
-            if figure.height > 1 {
-                sum += figure.x * 2 + figure.y
-                continue
-            }
-            
-            sum += figure.x + figure.y
-        }
-        
-        return (5 - crown.y) * 2000 + (3 - crown.x) * 1000 + sum
+        return 3 - crown.x + 4 - crown.y
     }
+//    var h: Int {
+//        guard let crown = figures["crown"] else { fatalError("Короны нет") }
+//
+//        if 5 - crown.y == 0 {
+//            return 0
+//        }
+//
+//        var sum = 0
+//
+//        for (_, figure) in figures {
+//            if figure.name == "crown" {
+//                continue
+//            }
+//
+//            if figure.width > 1 {
+//                sum += figure.x + figure.y * 2
+//                continue
+//            }
+//
+//            if figure.height > 1 {
+//                sum += figure.x * 2 + figure.y
+//                continue
+//            }
+//
+//            sum += figure.x + figure.y
+//        }
+//
+//        return (5 - crown.y) * 2000 + (3 - crown.x) * 1000 + sum
+//    }
     var f: Int {
         g + h
     }
