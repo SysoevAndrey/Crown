@@ -62,10 +62,12 @@ final class Brainteaser {
         
         guard var end else { fatalError("Solution was not found") }
         
-        repeat {
+        while end.from != nil {
             paths.append(end)
             end = end.from!
-        } while end.from != nil
+        }
+        
+        paths.append(end)
         
         paths = paths.reversed()
         
@@ -80,14 +82,14 @@ extension Brainteaser {
         var state: Array<State>
     }
     
-    static var area: Area = area20
+    static var area: Area = area5
     
     static let area21 = Area(
         gridWidth: 4,
         gridHeight: 5,
         state: [State(figures: [
             "crown": Figure(name: "crown", width: 2, height: 2, x: 1, y: 1),
-            "": Figure(name: "1", width: 1, height: 1, x: 1, y: 3),
+            "1": Figure(name: "1", width: 1, height: 1, x: 1, y: 3),
             "2": Figure(name: "2", width: 1, height: 2, x: 1, y: 4),
             "3": Figure(name: "3", width: 1, height: 1, x: 2, y: 3),
             "4": Figure(name: "4", width: 1, height: 2, x: 2, y: 4),
@@ -96,6 +98,24 @@ extension Brainteaser {
             "7": Figure(name: "7", width: 2, height: 1, x: 3, y: 4),
             "8": Figure(name: "8", width: 2, height: 1, x: 3, y: 5),
         ])]
+    )
+    
+    static let area5 = Area(
+        gridWidth: 4,
+        gridHeight: 5,
+        state: [
+            State(figures: [
+                "crown": Figure(name: "crown", width: 2, height: 2, x: 1, y: 1),
+                "view2": Figure(name: "view2", width: 2, height: 1, x: 3, y: 1),
+                "view3": Figure(name: "view3", width: 2, height: 1, x: 3, y: 2),
+                "view4": Figure(name: "view4", width: 1, height: 1, x: 1, y: 3),
+                "view5": Figure(name: "view5", width: 1, height: 1, x: 1, y: 3),
+                "view6": Figure(name: "view6", width: 1, height: 2, x: 1, y: 4),
+                "view7": Figure(name: "view7", width: 1, height: 2, x: 2, y: 4),
+                "view8": Figure(name: "view8", width: 2, height: 1, x: 3, y: 4),
+                "view9": Figure(name: "view9", width: 2, height: 1, x: 3, y: 5),
+            ])
+        ]
     )
     
     static let area20 = Area(

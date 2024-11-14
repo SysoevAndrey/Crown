@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     static let gap: CGFloat = 5
     
     private lazy var area: UIView = {
         let view = UIView()
         view.layer.borderWidth = 1
         view.layer.masksToBounds = true
-        view.frame = CGRect(x: 60, y: 150, width: 200, height: 300)
+        view.frame = CGRect(x: 60, y: 150, width: 200, height: 250)
         return view
     }()
     
@@ -111,11 +111,14 @@ class ViewController: UIViewController {
         let brainteaser = Brainteaser()
         let paths = brainteaser.start()
         
-        setInitialFrame(state: paths[0])
+        print(paths)
+        print(paths.count)
         
+        setInitialFrame(state: paths[0])
+
         let views: [UIView: String] = [
             crown: "crown",
-            view1: "view1",
+//            view1: "view1",
             view2: "view2",
             view3: "view3",
             view4: "view4",
@@ -124,10 +127,10 @@ class ViewController: UIViewController {
             view7: "view7",
             view8: "view8",
             view9: "view9",
-            view10: "view10",
-            view11: "view11"
+//            view10: "view10",
+//            view11: "view11"
         ]
-        
+
         for (view, name) in views {
             let animation = makeKeyframes(for: name, in: paths)
             view.layer.add(animation, forKey: "animation")
@@ -152,7 +155,7 @@ class ViewController: UIViewController {
     
     private func setInitialFrame(state: State) {
         crown.frame = makeFrame(by: "crown", from: state.figures)
-        view1.frame = makeFrame(by: "view1", from: state.figures)
+//        view1.frame = makeFrame(by: "view1", from: state.figures)
         view2.frame = makeFrame(by: "view2", from: state.figures)
         view3.frame = makeFrame(by: "view3", from: state.figures)
         view4.frame = makeFrame(by: "view4", from: state.figures)
@@ -161,8 +164,8 @@ class ViewController: UIViewController {
         view7.frame = makeFrame(by: "view7", from: state.figures)
         view8.frame = makeFrame(by: "view8", from: state.figures)
         view9.frame = makeFrame(by: "view9", from: state.figures)
-        view10.frame = makeFrame(by: "view10", from: state.figures)
-        view11.frame = makeFrame(by: "view11", from: state.figures)
+//        view10.frame = makeFrame(by: "view10", from: state.figures)
+//        view11.frame = makeFrame(by: "view11", from: state.figures)
     }
     
     private func makeKeyframes(for view: String, in states: [State]) -> CAKeyframeAnimation {
@@ -173,7 +176,7 @@ class ViewController: UIViewController {
             values.append(CGPoint(x: figure.x * 50 + 10, y: figure.y * 50 + 100))
         }
         animation.values = values
-        animation.duration = 30
+        animation.duration = 20
         return animation
     }
     
